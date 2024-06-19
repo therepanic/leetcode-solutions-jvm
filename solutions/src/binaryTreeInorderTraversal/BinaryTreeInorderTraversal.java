@@ -1,4 +1,6 @@
-import structures.TreeNode;
+package binaryTreeInorderTraversal;
+
+import structures.treeNode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

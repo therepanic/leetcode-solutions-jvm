@@ -1,11 +1,13 @@
-import structures.TreeNode;
+package validateBinarySearchTree;
+
+import structures.treeNode.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RecoverBinarySearchTree {
-    public void recoverTree(TreeNode root) {
+public class ValidateBinarySearchTree {
+    public boolean isValidBST(TreeNode root) {
         List<TreeNode> nodes = new ArrayList<>();
         helper(nodes, root);
 
@@ -15,9 +17,19 @@ public class RecoverBinarySearchTree {
         }
         Collections.sort(sortedNodesValues);
 
-        for (int i = 0; i < nodes.size(); i++) {
-            nodes.get(i).val = sortedNodesValues.get(i);
+        for (int i = 0; i < sortedNodesValues.size() - 1; i++) {
+            if (sortedNodesValues.get(i).equals(sortedNodesValues.get(i + 1))) {
+                return false;
+            }
         }
+
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).val != sortedNodesValues.get(i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void helper(List<TreeNode> nums, TreeNode root) {
