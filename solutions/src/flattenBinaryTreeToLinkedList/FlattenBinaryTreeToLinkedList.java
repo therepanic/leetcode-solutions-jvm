@@ -3,8 +3,6 @@ package flattenBinaryTreeToLinkedList;
 import structures.treeNode.TreeNode;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Queue;
 
 public class FlattenBinaryTreeToLinkedList {
