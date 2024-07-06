@@ -2,9 +2,6 @@ package kthSmallestElementInABST;
 
 import structures.treeNode.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class KthSmallestElementInABST {
     public int kthSmallest(TreeNode root, int k) {
@@ -12,22 +9,30 @@ public class KthSmallestElementInABST {
             return 0;
         }
 
-        List<Integer> values = new ArrayList<>();
+        int[] stageAnswer = new int[] {1, -1};
+        helper(root, k, stageAnswer);
 
-        read(root, values);
-
-        return values.get(k - 1);
+        return stageAnswer[1];
     }
 
-    public void read(TreeNode root, List<Integer> values) {
+    public void helper(TreeNode root, int k, int[] stageAnswer) {
         if (root.left != null) {
-            read(root.left, values);
+            helper(root.left, k, stageAnswer);
         }
 
-        values.add(root.val);
+        if (stageAnswer[1] != -1) {
+            return;
+        }
+
+        if (stageAnswer[0] == k) {
+            stageAnswer[1] = root.val;
+            return;
+        }
+
+        stageAnswer[0]++;
 
         if (root.right != null) {
-            read(root.right, values);
+            helper(root.right, k, stageAnswer);
         }
     }
 }
