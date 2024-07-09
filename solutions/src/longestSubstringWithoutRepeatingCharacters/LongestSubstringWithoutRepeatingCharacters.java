@@ -5,26 +5,29 @@ import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters {
     public static int lengthOfLongestSubstring(String s) {
+        Set<Character> charSet = new HashSet<>();
         char[] sChars = s.toCharArray();
-        Set<Character> characters = new HashSet<>();
-        int length = 0;
-
         int l = 0;
-        int r = 0;
 
-        while (r <= s.length() - 1) {
-            if (!characters.contains(sChars[r])) {
-                characters.add(sChars[r]);
-                length = Math.max(characters.size(), length);
-                r++;
+        int longestLength = 0;
+
+        for (int r = 0; r < s.length(); r++) {
+            if (!charSet.contains(sChars[r])) {
+                charSet.add(sChars[r]);
+
+                longestLength = Math.max(charSet.size(), longestLength);
             } else {
-                while (characters.contains(sChars[r])) {
-                    characters.remove(sChars[l]);
+                while (charSet.contains(sChars[r])) {
+                    charSet.remove(sChars[l]);
                     l++;
                 }
+
+                charSet.add(sChars[r]);
             }
         }
 
-        return length;
+        longestLength = Math.max(longestLength, charSet.size());
+
+        return longestLength;
     }
 }
