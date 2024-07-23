@@ -6,6 +6,18 @@ public class FibonacciNumber {
             return n;
         }
 
-        return fib(n - 1) + fib(n - 2);
+        int prePre = 0;
+        int pre = 1;
+
+        int answer = 1;
+
+        for (int i = 2; i <= n; i++) {
+            answer = pre + prePre;
+
+            prePre = pre;
+            pre = answer;
+        }
+
+        return answer;
     }
 }
