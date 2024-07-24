@@ -1,7 +1,6 @@
 package coinChange;
 
 import java.util.Arrays;
-import java.util.Map;
 
 public class CoinChange {
     public static int coinChange(int[] coins, int amount) {
