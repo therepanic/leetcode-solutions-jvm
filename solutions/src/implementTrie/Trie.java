@@ -54,7 +54,7 @@ public class Trie {
         return true;
     }
 
-    private static class Node {
+    public static class Node {
         public final Map<Object, Node> prefixNodeMap = new HashMap<>();
     }
 }

@@ -24,6 +24,6 @@ public class EvaluateReversePolishNotation {
             }
         }
 
-        return stack.poll();
+        return stack.pollLast();
     }
 }
