@@ -5,56 +5,72 @@ import java.util.*;
 public class Solution {
     public static void main(String[] args) {
         System.out.println(findTheCity(4, new int[][] {{0,1,3},{1,2,1},{1,3,4},{2,3,1}}, 4));
-        //System.out.println(findTheCity(5, new int[][] {{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}}, 2));
+        System.out.println(findTheCity(5, new int[][] {{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}}, 2));
     }
     public static int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        Map<Integer, PriorityQueue<Integer>> map = new TreeMap<>();
+        int citiesCount = Integer.MAX_VALUE;
+        int city = Integer.MIN_VALUE;
+
 
         for (int i = 0; i < n; i++) {
-            int cityCount = helper(edges, i, i, 0, distanceThreshold, new HashSet<>());
+            int[] distances = new int[n];
+            Arrays.fill(distances, Integer.MAX_VALUE);
 
-            System.out.println("Data: " + i + " " + cityCount);
-            if (map.containsKey(cityCount)) {
-                map.get(cityCount).add(i);
-            } else {
-                map.put(cityCount, new PriorityQueue<>(Collections.reverseOrder()));
-                map.get(cityCount).add(i);
+            distances[i] = 0;
+
+            Queue<int[]> edgeQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
+
+            for (int[] edge : edges) {
+                if (edge[0] == i) {
+                    edgeQueue.add(new int[] {edge[1], edge[2]});
+
+                    distances[edge[1]] = Math.min(edge[2], distances[edge[1]]);
+                } else if (edge[1] == i) {
+                    edgeQueue.add(new int[] {edge[0], edge[2]});
+
+                    distances[edge[0]] = Math.min(edge[2], distances[edge[0]]);
+                }
             }
-        }
 
-        return map.values().iterator().next().peek();
-    }
+            while (!edgeQueue.isEmpty()) {
+                int[] currentEdge = edgeQueue.poll();
 
-    public static int helper(int[][] edges, int startN, int n, int distance, int distanceThreshold, Set<Integer> visited) {
-        if (distance > distanceThreshold) {
-            return 0;
-        } else if (distance == distanceThreshold){
-            return 1;
-        }
+                if (currentEdge[1] > distances[currentEdge[0]]) {
+                    continue;
+                }
 
-        int cityCountSum = 0;
+                for (int[] edge : edges) {
+                    if (edge[0] == currentEdge[0]) {
+                        distances[edge[1]] = Math.min(distances[edge[1]], currentEdge[1] + edge[2]);
 
-        if (startN != n) {
-            cityCountSum = 1;
-        }
+                        edgeQueue.add(new int[] {edge[1], currentEdge[1] + edge[2]});
+                    } else if (edge[1] == currentEdge[0]) {
+                        distances[edge[0]] = Math.min(distances[edge[0]], currentEdge[1] + edge[2]);
 
-
-        visited.add(n);
-
-        for (int[] edge : edges) {
-            if (edge[0] == n && !visited.contains(edge[1])) {
-                System.out.println(n + " " + edge[1]);
-
-                cityCountSum += helper(edges, startN, edge[1], distance + edge[2], distanceThreshold, visited);
-            } else if (edge[1] == n && !visited.contains(edge[0])) {
-                System.out.println(n + " " + edge[0]);
-
-                cityCountSum += helper(edges, startN, edge[0], distance + edge[2], distanceThreshold, visited);
+                        edgeQueue.add(new int[] {edge[0], currentEdge[1] + edge[2]});
+                    }
+                }
             }
+
+            int currentCitiesThresholdCount = 1;
+
+            for (int distance : distances) {
+                if (distance <= distanceThreshold) {
+                    currentCitiesThresholdCount++;
+                }
+            }
+
+            if (currentCitiesThresholdCount < citiesCount) {
+                citiesCount = currentCitiesThresholdCount;
+                city = i;
+            } else if (currentCitiesThresholdCount == citiesCount) {
+                city = Math.max(city, i);
+            }
+
+            System.out.println(Arrays.toString(distances));
+
         }
 
-        visited.remove(n);
-
-        return cityCountSum;
+        return city;
     }
 }
