@@ -8,6 +8,20 @@ public class Solution {
         System.out.println(findTheCity(5, new int[][] {{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}}, 2));
     }
     public static int findTheCity(int n, int[][] edges, int distanceThreshold) {
+        Map<Integer, List<int[]>> edgeMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            edgeMap.put(i, new ArrayList<>());
+
+            for (int[] edge : edges) {
+                if (edge[0] == i) {
+                    edgeMap.get(i).add(new int[] {edge[1], edge[2]});
+                } else if (edge[1] == i){
+                    edgeMap.get(i).add(new int[] {edge[0], edge[2]});
+                }
+            }
+        }
+
         int citiesCount = Integer.MAX_VALUE;
         int city = Integer.MIN_VALUE;
 
@@ -20,16 +34,10 @@ public class Solution {
 
             Queue<int[]> edgeQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
 
-            for (int[] edge : edges) {
-                if (edge[0] == i) {
-                    edgeQueue.add(new int[] {edge[1], edge[2]});
+            for (int[] edge : edgeMap.get(i)) {
+                edgeQueue.add(new int[] {edge[0], edge[1]});
 
-                    distances[edge[1]] = Math.min(edge[2], distances[edge[1]]);
-                } else if (edge[1] == i) {
-                    edgeQueue.add(new int[] {edge[0], edge[2]});
-
-                    distances[edge[0]] = Math.min(edge[2], distances[edge[0]]);
-                }
+                distances[edge[0]] = Math.min(edge[1], distances[edge[0]]);
             }
 
             while (!edgeQueue.isEmpty()) {
@@ -39,16 +47,10 @@ public class Solution {
                     continue;
                 }
 
-                for (int[] edge : edges) {
-                    if (edge[0] == currentEdge[0]) {
-                        distances[edge[1]] = Math.min(distances[edge[1]], currentEdge[1] + edge[2]);
+                for (int[] edge : edgeMap.get(currentEdge[0])) {
+                    distances[edge[0]] = Math.min(currentEdge[1] + edge[1], distances[edge[0]]);
 
-                        edgeQueue.add(new int[] {edge[1], currentEdge[1] + edge[2]});
-                    } else if (edge[1] == currentEdge[0]) {
-                        distances[edge[0]] = Math.min(distances[edge[0]], currentEdge[1] + edge[2]);
-
-                        edgeQueue.add(new int[] {edge[0], currentEdge[1] + edge[2]});
-                    }
+                    edgeQueue.add(new int[] {edge[0], currentEdge[1] + edge[1]});
                 }
             }
 
@@ -66,9 +68,6 @@ public class Solution {
             } else if (currentCitiesThresholdCount == citiesCount) {
                 city = Math.max(city, i);
             }
-
-            System.out.println(Arrays.toString(distances));
-
         }
 
         return city;
