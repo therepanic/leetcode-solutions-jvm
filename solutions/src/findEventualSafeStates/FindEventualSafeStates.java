@@ -4,52 +4,45 @@ import java.util.*;
 
 public class FindEventualSafeStates {
     public List<Integer> eventualSafeNodes(int[][] graph) {
-        List<List<Integer>> incomingEdges = new ArrayList<>();
+        int[] graphListLength = new int[graph.length];
+        List<List<Integer>> invertedGraph = new ArrayList<>();
 
         for (int i = 0; i < graph.length; i++) {
-            incomingEdges.add(new ArrayList<>());
+            invertedGraph.add(new ArrayList<>());
         }
 
         for (int i = 0; i < graph.length; i++) {
             for (int value : graph[i]) {
-                incomingEdges.get(value).add(i);
+                graphListLength[i]++;
+                invertedGraph.get(value).add(i);
             }
         }
 
-        Set<Integer> checked = new HashSet<>();
+        Queue<Integer> graphWithoutIncomingEdges = new ArrayDeque<>();
 
-        Queue<Integer> withoutOutComingEdges = new ArrayDeque<>();
-
-        for (int i = 0; i < graph.length; i++) {
-            if (graph[i].length == 0) {
-                withoutOutComingEdges.add(i);
-                checked.add(i);
+        for (int i = 0; i < invertedGraph.size(); i++) {
+            if (graphListLength[i] == 0) {
+                graphWithoutIncomingEdges.add(i);
             }
         }
 
-        while (!withoutOutComingEdges.isEmpty()) {
-            int nodeValue = withoutOutComingEdges.poll();
+        List<Integer> graphNodeList = new ArrayList<>();
 
-            for (int value1 : incomingEdges.get(nodeValue)) {
-                boolean isHasAllCheckedValues = true;
+        while (!graphWithoutIncomingEdges.isEmpty()) {
+            int graphWithoutIncomingEdgesValue = graphWithoutIncomingEdges.poll();
 
-                for (int value2 : graph[value1]) {
-                    if (!checked.contains(value2)) {
-                        isHasAllCheckedValues = false;
-                        break;
-                    }
-                }
+            graphNodeList.add(graphWithoutIncomingEdgesValue);
 
-                if (isHasAllCheckedValues) {
-                    checked.add(value1);
-                    withoutOutComingEdges.add(value1);
+            for (int value : invertedGraph.get(graphWithoutIncomingEdgesValue)) {
+                graphListLength[value]--;
+                if (graphListLength[value] == 0) {
+                    graphWithoutIncomingEdges.add(value);
                 }
             }
         }
 
-        List<Integer> eventualSafeNodes = new ArrayList<>(checked);
+        Collections.sort(graphNodeList);
 
-        Collections.sort(eventualSafeNodes);
-        return eventualSafeNodes;
+        return graphNodeList;
     }
 }
