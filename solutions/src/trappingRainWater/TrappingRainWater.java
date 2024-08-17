@@ -2,34 +2,30 @@ package trappingRainWater;
 
 public class TrappingRainWater {
     public static int trap(int[] height) {
-        int currentMaxLeft = 0;
-        int currentMaxRight = height.length - 1;
+        int[] leftBoundary = new int[height.length];
+        int[] rightBoundary = new int[height.length];
 
-        int maxLeftValue = height[currentMaxLeft];
-        int maxRightValue = height[currentMaxRight];
+        int maxValue = 0;
 
-        int waterCount = 0;
+        for (int i = 0; i < height.length; i++) {
+            maxValue = Math.max(maxValue, height[i]);
 
-        int i = 0;
-        while (currentMaxLeft <= currentMaxRight) {
-            waterCount += Math.max(0, Math.min(maxLeftValue, maxRightValue)) - height[i];
+            leftBoundary[i] = maxValue;
+        }
+        maxValue = 0;
 
-            if (height[currentMaxLeft] <= height[currentMaxRight]) {
-                currentMaxLeft++;
+        for (int i = height.length - 1; i >= 0; i--) {
+            maxValue = Math.max(maxValue, height[i]);
 
-                if (currentMaxLeft < height.length) {
-                    maxLeftValue = Math.max(maxLeftValue, height[currentMaxLeft]);
-                }
-            } else {
-                currentMaxRight--;
-
-                if (currentMaxRight >= 0) {
-                    maxRightValue = Math.max(maxRightValue, height[currentMaxRight]);
-                }
-            }
-            i++;
+            rightBoundary[i] = maxValue;
         }
 
-        return waterCount;
+        int trapCount = 0;
+
+        for (int i = 0; i < height.length; i++) {
+            trapCount += Math.min(leftBoundary[i], rightBoundary[i]) - height[i];
+        }
+
+        return trapCount;
     }
 }
