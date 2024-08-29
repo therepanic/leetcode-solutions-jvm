@@ -21,52 +21,45 @@ public class CountNodesWithTheHighestScore {
 
         helper1(0, graph, nodeCountMap);
 
-        long[] answer = new long[2];
+        long[] answer = new long[1];
+        int[] steps = new int[1];
 
-        helper2(0, graph, nodeCountMap, answer);
+        helper2(0, graph, nodeCountMap, answer, steps);
 
-        return (int) answer[1];
+        return steps[0];
     }
 
-    public void helper2(int value, List<List<Integer>> graph, Map<Integer, Integer> nodeCountMap, long[] answer) {
+    public void helper2(int value, List<List<Integer>> graph, Map<Integer, Integer> nodeCountMap, long[] answer, int[] steps) {
         int leftNodeSize = 0;
         int rightNodeSize = 0;
-        int upNodeSize = nodeCountMap.get(0);
+        int upNodeSize = nodeCountMap.get(0) - 1;
 
-        if (!graph.get(value).isEmpty() && graph.get(value).get(0) != null) {
+        if (!graph.get(value).isEmpty()) {
             leftNodeSize = nodeCountMap.get(graph.get(value).get(0));
         }
 
-        if (graph.get(value).size() >= 2 && graph.get(value).get(1) != null) {
+        if (graph.get(value).size() >= 2) {
             rightNodeSize = nodeCountMap.get(graph.get(value).get(1));
         }
 
-        upNodeSize -= leftNodeSize + rightNodeSize + 1;
+        upNodeSize -= leftNodeSize + rightNodeSize;
 
-        if (upNodeSize == 0) {
-            upNodeSize = 1;
-        }
-
-        if (leftNodeSize == 0) {
-            leftNodeSize = 1;
-        }
-
-        if (rightNodeSize == 0) {
-            rightNodeSize = 1;
-        }
+        upNodeSize = upNodeSize == 0 ? 1 : upNodeSize;
+        leftNodeSize = leftNodeSize == 0 ? 1 : leftNodeSize;
+        rightNodeSize = rightNodeSize == 0 ? 1 : rightNodeSize;
 
         long newAnswer = (long) leftNodeSize * rightNodeSize * upNodeSize;
 
         if (newAnswer > answer[0]) {
             answer[0] = newAnswer;
 
-            answer[1] = 1;
+            steps[0] = 1;
         } else if (newAnswer == answer[0]) {
-            answer[1]++;
+            steps[0]++;
         }
 
         for (int node : graph.get(value)) {
-            helper2(node, graph, nodeCountMap, answer);
+            helper2(node, graph, nodeCountMap, answer, steps);
         }
     }
 
