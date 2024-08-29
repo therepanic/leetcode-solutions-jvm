@@ -21,17 +21,14 @@ public class CountNodesWithTheHighestScore {
 
         helper1(0, graph, nodeCountMap);
 
-        System.out.println(graph);
-        System.out.println(nodeCountMap);
-
-        int[] answer = new int[2];
+        long[] answer = new long[2];
 
         helper2(0, graph, nodeCountMap, answer);
 
-        return answer[1];
+        return (int) answer[1];
     }
 
-    public void helper2(int value, List<List<Integer>> graph, Map<Integer, Integer> nodeCountMap, int[] answer) {
+    public void helper2(int value, List<List<Integer>> graph, Map<Integer, Integer> nodeCountMap, long[] answer) {
         int leftNodeSize = 0;
         int rightNodeSize = 0;
         int upNodeSize = nodeCountMap.get(0);
@@ -58,9 +55,7 @@ public class CountNodesWithTheHighestScore {
             rightNodeSize = 1;
         }
 
-        System.out.println(leftNodeSize + " " + rightNodeSize + " " + upNodeSize + value);
-
-        int newAnswer = Math.max(answer[0], leftNodeSize * rightNodeSize * upNodeSize);
+        long newAnswer = (long) leftNodeSize * rightNodeSize * upNodeSize;
 
         if (newAnswer > answer[0]) {
             answer[0] = newAnswer;
