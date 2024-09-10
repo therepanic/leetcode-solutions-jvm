@@ -1,6 +1,4 @@
-package validateBinaryTreeNodes;
-
-import java.util.*;
+package validateBinaryTreeNodesTodo;
 
 public class ValidateBinaryTreeNodes {
     public boolean validateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
