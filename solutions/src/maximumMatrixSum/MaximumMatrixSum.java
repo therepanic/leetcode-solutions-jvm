@@ -2,29 +2,41 @@ package maximumMatrixSum;
 
 public class MaximumMatrixSum {
     public long maxMatrixSum(int[][] matrix) {
-        int negativeCount = 0;
-        long matrixSum = 0;
+        int negCount = 0;
+        int minNum = Integer.MAX_VALUE;
+        boolean isActive = true;
 
-        int min = Integer.MAX_VALUE;
+        for (int[] i : matrix) {
+            for (int j : i) {
+                minNum = Math.min(minNum, Math.abs(j));
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i][j] < 0) {
-                    negativeCount++;
+                if (j < 0) {
+                    negCount++;
                 }
-
-                min = Math.min(min, Math.abs(matrix[i][j]));
-                matrixSum += Math.abs(matrix[i][j]);
             }
         }
 
-        int negativeCountBalancer = negativeCount % 2;
+        long sum = 0;
 
-        if (negativeCountBalancer == 0) {
-            return matrixSum;
+        if (negCount % 2 == 0) {
+            for (int[] i : matrix) {
+                for (int j : i) {
+                    sum += Math.abs(j);
+                }
+            }
         } else {
-            return matrixSum - 2L * min;
-
+            for (int[] i : matrix) {
+                for (int j : i) {
+                    if (Math.abs(j) == minNum && isActive) {
+                        sum -= Math.abs(j);
+                        isActive = false;
+                    } else {
+                        sum += Math.abs(j);
+                    }
+                }
+            }
         }
+
+        return sum;
     }
 }
