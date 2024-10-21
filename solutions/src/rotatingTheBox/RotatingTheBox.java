@@ -1,8 +1,6 @@
 package rotatingTheBox;
 
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Queue;
 
 public class RotatingTheBox {
     public static char[][] rotateTheBox(char[][] box) {
@@ -32,11 +30,5 @@ public class RotatingTheBox {
         }
 
         return newBox;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(rotateTheBox(new char[][]{{'#', '#', '*', '.', '*', '.'},
-                {'#', '#', '#', '*', '.', '.'},
-                {'#', '#', '#', '.', '#', '.'}})));
     }
 }
