@@ -11,7 +11,7 @@ public class MaximumTastinessOfCandyBasket {
 
         int answer = 0;
         while (l <= r) {
-            int mid = l + (r - l) / 2;
+            int mid = (l + r) / 2;
 
             if (check(price, k, mid)) {
                 answer = mid;
