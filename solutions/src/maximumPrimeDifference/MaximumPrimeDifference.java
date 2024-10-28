@@ -24,8 +24,6 @@ public class MaximumPrimeDifference {
                 highIndex = i;
             }
         }
-
-
         return highIndex - lowIndex;
     }
 
