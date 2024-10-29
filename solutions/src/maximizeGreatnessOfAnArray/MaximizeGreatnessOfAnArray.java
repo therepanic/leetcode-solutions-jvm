@@ -3,9 +3,6 @@ package maximizeGreatnessOfAnArray;
 import java.util.Arrays;
 
 public class MaximizeGreatnessOfAnArray {
-    public static void main(String[] args) {
-        System.out.println(maximizeGreatness(new int[] {1,2,3,4,}));
-    }
     public static int maximizeGreatness(int[] nums) {
         Arrays.sort(nums);
 
