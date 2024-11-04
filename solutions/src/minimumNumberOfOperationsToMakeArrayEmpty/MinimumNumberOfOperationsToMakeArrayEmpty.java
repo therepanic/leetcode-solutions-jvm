@@ -1,13 +1,13 @@
-package minimumRoundsToCompleteAllTasks;
+package minimumNumberOfOperationsToMakeArrayEmpty;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MinimumRoundsToCompleteAllTasks {
-    public int minimumRounds(int[] tasks) {
+public class MinimumNumberOfOperationsToMakeArrayEmpty {
+    public int minOperations(int[] nums) {
         Map<Integer, Integer> taskCountMap = new HashMap<>();
 
-        for (int task : tasks) {
+        for (int task : nums) {
             taskCountMap.put(task, taskCountMap.getOrDefault(task, 0) + 1);
         }
 
