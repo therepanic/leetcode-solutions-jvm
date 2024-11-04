@@ -22,19 +22,10 @@ public class MinimumRoundsToCompleteAllTasks {
                 return -1;
             }
 
-            while (value != 0) {
-                if (value == 2) {
-                    count++;
-                    break;
-                } else if (value == 4) {
-                    count += 2;
-                    break;
-                }
-
-                value -= 3;
-                count++;
-
-
+            if (value % 3 == 0) {
+                count += value / 3;
+            } else {
+                count += value / 3 + 1;
             }
         }
 
