@@ -28,12 +28,12 @@ public class NonDecreasingSubsequences {
             bypass(answer, current, nums, index + 1, nums[index]);
 
             current.removeLast();
-
-            if (nums[index] == prev) {
-                return;
-            }
-
-            bypass(answer, current, nums, index + 1, prev);
         }
+
+        if (nums[index] == prev) {
+            return;
+        }
+
+        bypass(answer, current, nums, index + 1, prev);
     }
 }
