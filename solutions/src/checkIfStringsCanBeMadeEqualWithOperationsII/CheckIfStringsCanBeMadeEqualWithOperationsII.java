@@ -1,7 +1,5 @@
 package checkIfStringsCanBeMadeEqualWithOperationsII;
 
-import java.util.Arrays;
-
 public class CheckIfStringsCanBeMadeEqualWithOperationsII {
     public boolean checkStrings(String s1, String s2) {
         int[] charCount = new int[26];
