@@ -1,9 +1,5 @@
 package applyOperationsToMakeStringEmpty;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class ApplyOperationsToMakeStringEmpty {
     public static String lastNonEmptyString(String s) {
         char[] sChars = s.toCharArray();
