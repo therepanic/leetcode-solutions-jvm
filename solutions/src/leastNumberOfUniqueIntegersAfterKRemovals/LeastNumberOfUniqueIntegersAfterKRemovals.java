@@ -1,9 +1,6 @@
 package leastNumberOfUniqueIntegersAfterKRemovals;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class LeastNumberOfUniqueIntegersAfterKRemovals {
     public int findLeastNumOfUniqueInts(int[] arr, int k) {
@@ -13,22 +10,21 @@ public class LeastNumberOfUniqueIntegersAfterKRemovals {
             numCountMap.put(num, numCountMap.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<int[]> nums = new PriorityQueue<>(Comparator.comparingInt((p1) -> p1[1]));
+        List<Integer> nums = new ArrayList<>(numCountMap.values());
 
-        for (Map.Entry<Integer, Integer> entry : numCountMap.entrySet()) {
-            nums.add(new int[] {entry.getKey(), entry.getValue()});
-        }
+        Collections.sort(nums);
 
-        for (int i = 0; i < k && !nums.isEmpty(); i++) {
-            int[] result = nums.poll();
+        int uniqCount = nums.size();
 
-            if (result[1] - 1 == 0) {
-                numCountMap.remove(result[0]);
+        for (int num : nums) {
+            if (k >= num) {
+                k -= num;
+                uniqCount--;
             } else {
-                nums.add(new int[] {result[0], --result[1]});
+                break;
             }
         }
 
-        return nums.size();
+        return uniqCount;
     }
 }
