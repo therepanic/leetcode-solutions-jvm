@@ -1,6 +1,6 @@
 package topKFrequentWords
 
-class TopKFrequentWords {
+class TopKFrequentWordsKt {
     fun topKFrequent(words: Array<String>, k: Int): List<String> {
         return words.groupingBy { it }.eachCount()
             .entries
