@@ -8,7 +8,6 @@ public class LengthOfLongestSubarrayWithAtMostKFrequency {
         Map<Integer, Integer> numCountMap = new HashMap<>();
 
         int maxSize = 0;
-
         int l = 0;
 
         for (int r = 0; r < nums.length; r++) {
