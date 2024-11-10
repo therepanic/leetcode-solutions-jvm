@@ -21,7 +21,7 @@ public class MaxSumOfAPairWithEqualSumOfDigits {
             }
         }
 
-        return 0;
+        return maxSum;
     }
 
     private int sumOfDigits(int number) {
