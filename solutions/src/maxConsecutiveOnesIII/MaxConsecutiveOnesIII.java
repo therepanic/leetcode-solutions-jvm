@@ -1,4 +1,4 @@
-package maaxConsecutiveOnesIII;
+package maxConsecutiveOnesIII;
 
 public class MaxConsecutiveOnesIII {
     public int longestOnes(int[] nums, int k) {
