@@ -11,13 +11,10 @@ public class MinimumSwapsToGroupAll1sTogetherII {
 
         int l = 0;
         int r = 0;
-        int oneCount = 0;
         int zeroCount = 0;
 
         while (r < allOneCount) {
-            if (nums[r % nums.length] == 1) {
-                oneCount++;
-            } else {
+            if (nums[r % nums.length] != 1) {
                 zeroCount++;
             }
             r++;
@@ -26,16 +23,13 @@ public class MinimumSwapsToGroupAll1sTogetherII {
         minZeroCount = Math.min(minZeroCount, zeroCount);
 
         while (r < nums.length + allOneCount - 1) {
-            if (nums[l % nums.length] == 1) {
-                oneCount--;
-            } else {
+            if (nums[l % nums.length] != 1) {
                 zeroCount--;
             }
+
             l++;
 
-            if (nums[r % nums.length] == 1) {
-                oneCount++;
-            } else {
+            if (nums[r % nums.length] != 1) {
                 zeroCount++;
             }
             r++;
