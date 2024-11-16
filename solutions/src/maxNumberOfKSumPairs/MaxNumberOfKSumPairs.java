@@ -1,48 +1,29 @@
 package maxNumberOfKSumPairs;
 
-public class MaxNumberOfKSumPairs {
-    public int minSwaps(int[] nums) {
-        int allOneCount = 0;
-        int minZeroCount = Integer.MAX_VALUE;
+import java.util.Arrays;
 
-        for (int num : nums) {
-            if (num == 1) allOneCount++;
-        }
+public class MaxNumberOfKSumPairs {
+    public int maxOperations(int[] nums, int k) {
+        Arrays.sort(nums);
 
         int l = 0;
-        int r = 0;
-        int oneCount = 0;
-        int zeroCount = 0;
+        int r = nums.length - 1;
 
-        while (r < allOneCount) {
-            if (nums[r % nums.length] == 1) {
-                oneCount++;
+        int operations = 0;
+        while (l < r) {
+            if (nums[l] + nums[r] == k) {
+                operations++;
+                l++;
+                r--;
+            } else if (nums[l] + nums[r] > k) {
+                r--;
             } else {
-                zeroCount++;
+                l++;
+                continue;
+
             }
-            r++;
         }
 
-        minZeroCount = Math.min(minZeroCount, zeroCount);
-
-        while (r < nums.length + allOneCount - 1) {
-            if (nums[l % nums.length] == 1) {
-                oneCount--;
-            } else {
-                zeroCount--;
-            }
-            l++;
-
-            if (nums[r % nums.length] == 1) {
-                oneCount++;
-            } else {
-                zeroCount++;
-            }
-            r++;
-
-            minZeroCount = Math.min(minZeroCount, zeroCount);
-        }
-
-        return minZeroCount;
+        return operations;
     }
 }
