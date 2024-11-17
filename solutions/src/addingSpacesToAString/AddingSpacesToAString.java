@@ -7,21 +7,14 @@ public class AddingSpacesToAString {
 
         int spaceIndex = 0;
 
-        int prefix = 0;
-
-        int i = 0;
-
-        while (i < sChars.length) {
-            if (sChars[i] + prefix == spaces[spaceIndex]) {
+        for (int i = 0; i < chars.length; i++) {
+            if (spaceIndex < spaces.length && i - spaceIndex == spaces[spaceIndex]) {
                 chars[i] = ' ';
                 spaceIndex++;
-                prefix++;
                 continue;
             }
 
-            chars[i] = sChars[i];
-            prefix++;
-            i++;
+            chars[i] = sChars[i - spaceIndex];
         }
 
         return String.valueOf(chars);
