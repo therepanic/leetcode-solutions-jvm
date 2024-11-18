@@ -1,30 +1,21 @@
 package removeDuplicatesFromSortedArrayII;
 
-import java.util.Arrays;
-
 public class RemoveDuplicatesFromSortedArrayII {
     public int removeDuplicates(int[] nums) {
-        int curVal = -1;
-        int count = 0;
+        if (nums.length <= 2) {
+            return nums.length;
+        }
 
-        int spaceCount = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int num = nums[i];
+        int writeIndex = 2;
 
-            if (num == curVal) {
-                if (count > 2) {
-                    spaceCount++;
-                    nums[i] = Integer.MAX_VALUE - 2;
-                }
-                count++;
-            } else {
-                curVal = num;
-                count = 1;
+        for (int readIndex = 2; readIndex < nums.length; readIndex++) {
+            if (nums[readIndex] != nums[writeIndex - 2]) {
+                nums[writeIndex] = nums[readIndex];
+
+                writeIndex++;
             }
         }
 
-        Arrays.sort(nums);
-
-        return nums.length - spaceCount;
+        return writeIndex;
     }
 }
