@@ -1,6 +1,6 @@
 package twoSum2
 
-class TwoSum2 {
+class TwoSum2Ktl {
     fun twoSum(numbers: IntArray, target: Int): IntArray {
         numbers.sort()
 
