@@ -1,13 +1,9 @@
 package sumOfSubarrayMinimums;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 
 public class SumOfSubarrayMinimums {
-    public static void main(String[] args) {
-        System.out.println(sumSubarrayMins(new int[] {3,1,2,4}));
-    }
     public static int sumSubarrayMins(int[] arr) {
         int sum = 0;
         Deque<Integer> deque = new ArrayDeque<>();
@@ -30,7 +26,7 @@ public class SumOfSubarrayMinimums {
                 deque.pollLast();
             }
 
-            right[i] = deque.isEmpty() ? right.length - i : deque.getLast() - i;
+            right[i] = deque.isEmpty() ? i - 1 : deque.getLast() - i;
 
             deque.addLast(i);
         }
