@@ -4,9 +4,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class SumOfSubarrayRanges {
-    public static void main(String[] args) {
-        System.out.println(subArrayRanges(new int[] {4,-2,-3,4,1}));
-    }
     public static long subArrayRanges(int[] nums) {
         Deque<Integer> deque = new ArrayDeque<>();
         int[] leftSmall = new int[nums.length];
