@@ -19,20 +19,21 @@ public class SumOfSubarrayMinimums {
 
             deque.addLast(i);
         }
+
         deque.clear();
 
         for (int i = right.length - 1; i >= 0; i--) {
-            while (!deque.isEmpty() && arr[deque.getLast()] > arr[i]) {
+            while (!deque.isEmpty() && arr[deque.getLast()] >= arr[i]) {
                 deque.pollLast();
             }
 
-            right[i] = deque.isEmpty() ? i - 1 : deque.getLast() - i;
+            right[i] = deque.isEmpty() ? right.length - i: deque.getLast() - i;
 
             deque.addLast(i);
         }
 
         for (int i = 0; i < arr.length; i++) {
-            sum += arr[i] * left[i] * right[i];
+            sum = (int) ((sum + ((long) arr[i] * left[i] * right[i]) % (1000000007)) % (1000000007));
         }
 
         return sum;
