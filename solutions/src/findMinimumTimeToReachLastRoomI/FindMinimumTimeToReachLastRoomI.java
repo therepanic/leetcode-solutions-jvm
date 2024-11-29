@@ -6,5 +6,7 @@ import java.util.PriorityQueue;
 public class FindMinimumTimeToReachLastRoomI {
     public int minTimeToReach(int[][] moveTime) {
         PriorityQueue<int[]> heap = new PriorityQueue<>(Comparator.comparingInt(p -> p[2]));
+        //TODO:
+        return 0;
     }
 }
