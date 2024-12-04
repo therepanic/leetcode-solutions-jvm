@@ -23,13 +23,13 @@ public class KthLargestPerfectSubtreeSizeInBinaryTree {
         if (root.left != null) {
             left = bypass(root.left, nums);
         } else {
-            left = new int[] {1, 1, 1};
+            left = new int[] {1, 1, 0};
         }
 
         if (root.right != null) {
             right = bypass(root.right, nums);
         } else {
-            right = new int[] {1, 1, 1};
+            right = new int[] {1, 1, 0};
         }
 
         if (left[0] == left[1] && right[0] == right[1] && left[0] == right[0]) {
