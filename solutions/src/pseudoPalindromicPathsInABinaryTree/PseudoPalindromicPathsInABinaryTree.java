@@ -2,9 +2,6 @@ package pseudoPalindromicPathsInABinaryTree;
 
 import structures.treeNode.TreeNode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PseudoPalindromicPathsInABinaryTree {
     public int pseudoPalindromicPaths(TreeNode root) {
         int[] answer = new int[1];
