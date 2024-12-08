@@ -14,7 +14,6 @@ public class MaximumProductOfWordLengths {
                 charsCount[c - 'a'] = true;
             }
 
-
             for (int j = i + 1; j < words.length; j++) {
                 char[] b = words[j].toCharArray();
                 boolean isOk = true;
