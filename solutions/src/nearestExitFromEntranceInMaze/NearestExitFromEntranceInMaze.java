@@ -26,24 +26,22 @@ public class NearestExitFromEntranceInMaze {
             }
         }
 
-        Set<String> set = new HashSet<>();
+        boolean[][] checked = new boolean[maze.length][maze[0].length];
 
         while (!move.isEmpty()) {
             int[] poll = move.poll();
-
-            String key = poll[0] + "-" + poll[1];
-
-            if (set.contains(key)) continue;
 
             if (poll[0] < 0 || poll[1] < 0 || poll[0] >= maze.length || poll[1] >= maze[0].length || maze[poll[0]][poll[1]] == '+') {
                 continue;
             }
 
+            if (checked[poll[0]][poll[1]]) continue;
+
             if (poll[0] == entrance[0] && poll[1] == entrance[1]) {
                 return poll[2];
             }
 
-            set.add(key);
+            checked[poll[0]][poll[1]] = true;
 
             move.add(new int[] {poll[0] + 1, poll[1], poll[2] + 1});
             move.add(new int[] {poll[0] - 1, poll[1], poll[2] + 1});
