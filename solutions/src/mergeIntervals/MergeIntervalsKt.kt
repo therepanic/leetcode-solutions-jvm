@@ -1,6 +1,6 @@
 package mergeIntervals
 
-class MergeIntervals {
+class MergeIntervalsKt {
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
         intervals.sortBy { it[0] }
 
