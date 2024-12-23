@@ -1,8 +1,6 @@
 package kClosestPointsToOrigin;
 
-import java.util.AbstractMap;
 import java.util.Comparator;
-import java.util.Map;
 import java.util.PriorityQueue;
 
 public class KClosestPointsToOrigin {
