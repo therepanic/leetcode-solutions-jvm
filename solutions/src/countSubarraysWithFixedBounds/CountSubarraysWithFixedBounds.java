@@ -2,9 +2,6 @@ package countSubarraysWithFixedBounds;
 
 
 public class CountSubarraysWithFixedBounds {
-    public static void main(String[] args) {
-        System.out.println(countSubarrays(new int[] {1,3,5,2,7,5}, 1, 5));
-    }
     public static long countSubarrays(int[] nums, int minK, int maxK) {
         long count = 0;
 
