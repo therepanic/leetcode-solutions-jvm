@@ -14,7 +14,7 @@ public class CountTheNumberOfHousesAtACertainDistanceI {
         x--;
         y--;
         graph.get(x).add(y);
-        System.out.println(graph);
+        int[] answer = new int[n];
 
         for (int i = 0; i < n; i++) {
             int[] distances = new int[n];
@@ -22,22 +22,29 @@ public class CountTheNumberOfHousesAtACertainDistanceI {
 
             PriorityQueue<int[]> heap = new PriorityQueue<>(Comparator.comparingInt(p -> p[1]));
             heap.add(new int[] {i, 0});
+            distances[i] = 0;
 
             while (!heap.isEmpty()) {
                 int[] poll = heap.poll();
 
-                if (poll[1] == graph.size()) break;
+                distances[poll[0]] = Math.min(distances[poll[0]], poll[1]);
 
-                distances[i] = Math.min(distances[i], poll[1]);
+                if (poll[1] == graph.size()) break;
 
                 for (int curNode : graph.get(poll[0])) {
                     heap.add(new int[] {curNode, poll[1] + 1});
                 }
             }
-
+            for (int distance : distances) {
+                if (distance > 0 && distance < Integer.MAX_VALUE) {
+                    answer[distance - 1]++;
+                }
+            }
             System.out.println(Arrays.toString(distances));
         }
-
-        return null;
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] *= 2;
+        }
+        return answer;
     }
 }
