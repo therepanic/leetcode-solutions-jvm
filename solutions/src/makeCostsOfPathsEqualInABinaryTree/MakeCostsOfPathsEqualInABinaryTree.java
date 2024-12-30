@@ -1,12 +1,6 @@
 package makeCostsOfPathsEqualInABinaryTree;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MakeCostsOfPathsEqualInABinaryTree {
-    public static void main(String[] args) {
-        System.out.println(minIncrements(7, new int[] {1,5,2,2,3,3,1}));
-    }
     public static int minIncrements(int n, int[] cost) {
         int[] sum = new int[1];
         helper(0, cost, sum);
