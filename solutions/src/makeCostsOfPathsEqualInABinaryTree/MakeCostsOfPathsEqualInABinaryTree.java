@@ -1,6 +1,6 @@
 package makeCostsOfPathsEqualInABinaryTree;
 
-public class MakeCostsOfPathsEqualInABinaryTree {
+public class MakeCostsOfPathsEqualInABinaryTree {       
     public static int minIncrements(int n, int[] cost) {
         int[] sum = new int[1];
         helper(0, cost, sum);
