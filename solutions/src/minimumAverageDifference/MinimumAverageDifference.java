@@ -1,7 +1,5 @@
 package minimumAverageDifference;
 
-import java.util.Arrays;
-
 public class MinimumAverageDifference {
     public static int minimumAverageDifference(int[] nums) {
         long[] left = new long[nums.length];
