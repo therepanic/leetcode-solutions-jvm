@@ -1,11 +1,6 @@
 package minimumNumberOfOperationsToMoveAllBallsToEachBox;
 
-import java.util.Arrays;
-
 public class MinimumNumberOfOperationsToMoveAllBallsToEachBox {
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(minOperations("001011")));
-    }
     public static int[] minOperations(String boxes) {
         char[] boxesChars = boxes.toCharArray();
 
