@@ -34,18 +34,15 @@ public class ShiftingLettersII {
             }
         }
 
-        int[] arr = new int[sChars.length];
-        arr[0] = counts[0];
-
         for (int i = 1; i < sChars.length; i++) {
-            arr[i] = arr[i - 1] + counts[i];
+            counts[i] = counts[i - 1] + counts[i];
         }
 
 
         for (int i = 0; i < sChars.length; i++) {
             char c = sChars[i];
 
-            int adder = (c - 'a' + arr[i]) % 26;
+            int adder = (c - 'a' + counts[i]) % 26;
 
             sChars[i] = (char) (adder + 'a');
         }
