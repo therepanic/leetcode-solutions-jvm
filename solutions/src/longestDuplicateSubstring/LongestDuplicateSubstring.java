@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LongestDuplicateSubstring {
-    public static void main(String[] args) {
-        System.out.println(longestDupSubstring("banana"));
-    }
     public static String longestDupSubstring(String s) {
         int p = 31;
         long m = (long) 1e17 + 7;
