@@ -1,13 +1,6 @@
 package minimumASCIIDeleteSumForTwoStrings;
 
-import java.util.Arrays;
-
 public class MinimumASCIIDeleteSumForTwoStrings {
-    public static void main(String[] args) {
-        System.out.println(minimumDeleteSum("sea", "eat"));
-        System.out.println(minimumDeleteSum("delete", "leet"));
-        //System.out.println(minimumDeleteSum("delete", "leet"));
-    }
     public static int minimumDeleteSum(String s1, String s2) {
         int[][] dp = new int[s2.length() + 1][s1.length() + 1];
 
