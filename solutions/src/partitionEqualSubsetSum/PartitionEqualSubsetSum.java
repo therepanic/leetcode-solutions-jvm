@@ -12,7 +12,7 @@ public class PartitionEqualSubsetSum {
         boolean[] dp = new boolean[sum + 1];
         dp[0] = true;
 
-        for (int num : nums) {
+        for (int num : nums) {//1 4 7
             for (int i = sum; i >= num; i--) {
                 dp[i] = dp[i] || dp[i - num];
             }
