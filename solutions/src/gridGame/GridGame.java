@@ -3,12 +3,6 @@ package gridGame;
 import java.util.Arrays;
 
 public class GridGame {
-    public static void main(String[] args) {
-        //System.out.println(gridGame(new int[][] {{2,5,4}, {1,5,1}}));
-        //System.out.println(gridGame(new int[][] {{3,3,1}, {8,5,2}}));
-
-        System.out.println(gridGame(new int[][] {{20,3,20,17,2,12,15,17,4,15},{20,10,13,14,15,5,2,3,14,3}}));
-    }
     public static long gridGame(int[][] grid) {
         int n = grid[0].length;
 
