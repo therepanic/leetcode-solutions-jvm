@@ -4,19 +4,20 @@ import structures.treeNode.TreeNode;
 
 public class SumOfRootToLeafBinaryNumbers {
     public int sumRootToLeaf(TreeNode root) {
-        int[] num = new int[1];
-        bypass(root, num, new StringBuilder());
-        return num[0];
+        return bypass(root, new StringBuilder());
     }
 
-    public void bypass(TreeNode root, int[] num, StringBuilder sb) {
-        if (root == null) return;
+    public int bypass(TreeNode root, StringBuilder sb) {
+        if (root == null) return 0;
         sb.append(root.val);
-        bypass(root.left, num, sb);
-        bypass(root.right, num, sb);
+        int fir = bypass(root.left, sb);
+        int sec = bypass(root.right, sb);
         if (root.left == null && root.right == null) {
-            num[0]+=Integer.parseInt(sb.toString(), 2);
+            String s = sb.toString();
+            sb.deleteCharAt(sb.length() - 1);
+            return Integer.parseInt(s, 2);
         }
         sb.deleteCharAt(sb.length() - 1);
+        return fir + sec;
     }
 }
