@@ -8,13 +8,13 @@ public class MinimizeHammingDistanceAfterSwapOperations {
         for (int[] swap : allowedSwaps) {
             uf.union(swap[0], swap[1]);
         }
-        Map<Integer, Set<Integer>> graph = new HashMap<>();
+        Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int i = 0; i < source.length; i++) {
             int root = uf.find(i);
-            graph.computeIfAbsent(root, k -> new HashSet<>()).add(i);
+            graph.computeIfAbsent(root, k -> new ArrayList<>()).add(i);
         }
         int count = 0;
-        for (Set<Integer> nodes : graph.values()) {
+        for (List<Integer> nodes : graph.values()) {
             Map<Integer, Integer> countMap = new HashMap<>();
             for (int node : nodes) {
                 countMap.put(source[node], countMap.getOrDefault(source[node], 0) + 1);
