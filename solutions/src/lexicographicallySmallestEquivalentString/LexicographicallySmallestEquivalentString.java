@@ -7,11 +7,9 @@ public class LexicographicallySmallestEquivalentString {
         char[] s2Chars = s2.toCharArray();
         UnionFind uf = new UnionFind(26);
         char[] minChar = new char[26];
-
         for (char c = 'a'; c <= 'z'; c++) {
             minChar[c - 'a'] = c;
         }
-
         for (int i = 0; i < s1.length(); i++) {
             int root1 = uf.find(s1Chars[i] - 'a');
             int root2 = uf.find(s2Chars[i] - 'a');
