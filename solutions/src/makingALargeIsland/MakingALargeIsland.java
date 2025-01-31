@@ -17,30 +17,26 @@ public class MakingALargeIsland {
         }
         int max = 0;
         for (int val : countMap) max = Math.max(val, max);
+        int[] left = new int[] {1, -1, 0, 0};
+        int[] down = new int[] {0, 0, 1, -1};
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 int cur = 1;
                 if (grid[i][j] == 0) {
                     Set<Integer> hashes = new HashSet<>();
+                    for (int k = 0; k < 4; k++) {
+                        int newI = i + left[k];
+                        int newJ = j + down[k];
 
-                    if (j - 1 >= 0 && grid[i][j - 1] == 1) {
-                        int leftHash = i * n + (j - 1);
-                        hashes.add(uf.find(leftHash));
-                    }
-                    if (j + 1 < n && grid[i][j + 1] == 1) {
-                        int rightHash = i * n + (j + 1);
-                        hashes.add(uf.find(rightHash));
-                    }
-                    if (i - 1 >= 0 && grid[i - 1][j] == 1) {
-                        int upHash = (i - 1) * n + j;
-                        hashes.add(uf.find(upHash));
-                    }
-                    if (i + 1 < n && grid[i + 1][j] == 1) {
-                        int downHash = (i + 1) * n + j;
-                        hashes.add(uf.find(downHash));
-                    }
-                    for (int hash : hashes) {
-                        cur += countMap[hash];
+                        if (newI < 0 || newI >= n || newJ < 0 || newJ >= n) continue;
+
+                        int hash = newI * n + newJ;
+
+                        int node = uf.find(hash);
+                        if (grid[newI][newJ] == 1 && !hashes.contains(node)) {
+                            hashes.add(node);
+                            cur += countMap[node];
+                        }
                     }
                 }
                 max = Math.max(max, cur);
