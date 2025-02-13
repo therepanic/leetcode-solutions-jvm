@@ -1,39 +1,24 @@
 package findTheWinnerOfAnArrayGame;
 
-import java.util.LinkedList;
-
 public class FindTheWinnerOfAnArrayGame {
     public static int getWinner(int[] arr, int k) {
-        k = Math.min(k, arr.length);
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        for (int i = 0; i < arr.length; i++) {
-            linkedList.add(arr[i]);
+        if (k >= arr.length) {
+            int max = arr[0];
+            for (int num : arr) {
+                max = Math.max(max, num);
+            }
+            return max;
         }
-        int lastW = 0;
-        int countLastW = 0;
-        while (countLastW != k) {
-            if (linkedList.getFirst() > linkedList.get(1)) {
-                int n = linkedList.get(1);
-                linkedList.remove(1);
-                linkedList.add(n);
-                if (lastW == linkedList.getFirst()) {
-                    countLastW++;
-                } else {
-                    lastW = linkedList.getFirst();
-                    countLastW = 1;
-                }
+        int cur = arr[0];
+        int wins = 0;
+        for (int i = 1; i < arr.length && wins < k; i++) {
+            if (cur > arr[i]) {
+                wins++;
             } else {
-                int n = linkedList.getFirst();
-                linkedList.removeFirst();
-                linkedList.add(n);
-                if (lastW == linkedList.getFirst()) {
-                    countLastW++;
-                } else {
-                    lastW = linkedList.getFirst();
-                    countLastW = 1;
-                }
+                wins = 1;
+                cur = arr[i];
             }
         }
-        return lastW;
+        return cur;
     }
 }
