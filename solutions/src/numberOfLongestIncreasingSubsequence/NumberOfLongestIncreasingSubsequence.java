@@ -3,12 +3,6 @@ package numberOfLongestIncreasingSubsequence;
 import java.util.Arrays;
 
 public class NumberOfLongestIncreasingSubsequence {
-    public static void main(String[] args) {
-        System.out.println(findNumberOfLIS(new int[] {2,2,2,2,1}));
-        System.out.println(findNumberOfLIS(new int[] {2,1}));
-        System.out.println(findNumberOfLIS(new int[] {1,3,5,4,7}));
-        System.out.println(findNumberOfLIS(new int[] {4,6,7,7}));
-    }
     public static int findNumberOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
         int[] count = new int[nums.length];
