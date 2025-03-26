@@ -11,7 +11,7 @@ public class OptimalPartitionOfString {
             int index = ch - 'a';
             if (has[index]) {
                 Arrays.fill(has, false);
-                c++;;
+                c++;
             }
             has[index] = true;
         }
