@@ -1,8 +1,5 @@
 package sumOfBeautyInTheArray;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class SumOfBeautyInTheArray {
     public static int sumOfBeauties(int[] nums) {
         int[] leftMax = new int[nums.length];
