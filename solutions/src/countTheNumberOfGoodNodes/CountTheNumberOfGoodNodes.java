@@ -39,6 +39,7 @@ public class CountTheNumberOfGoodNodes {
         if (ok) {
             sum[0]++;
         }
+
         return s + 1;
     }
 }
