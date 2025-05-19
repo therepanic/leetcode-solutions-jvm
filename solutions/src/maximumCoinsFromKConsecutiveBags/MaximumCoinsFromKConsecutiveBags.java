@@ -16,7 +16,12 @@ public class MaximumCoinsFromKConsecutiveBags {
         });
         long answer = 0;
         long c = 0;
-        //TODO
+        int it = 0;
+        for (int i = 0; i < coins.length; i++) {
+            int start = coins[i][0];
+            int end = start + k - 1;
+            //TODO
+        }
         return answer;
     }
 }
