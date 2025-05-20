@@ -1,4 +1,4 @@
-package maximumGap;
+package maximumGapTODO;
 
 import java.util.Arrays;
 
@@ -10,5 +10,6 @@ public class MaximumGap {
             max = Math.max(max, nums[i] - nums[i - 1]);
         }
         return max;
+        //TODO: bucket sort
     }
 }
