@@ -1,14 +1,9 @@
 package maximizeTheNumberOfTargetNodesAfterConnectingTreesI;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MaximizeTheNumberOfTargetNodesAfterConnectingTreesI {
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(maxTargetNodes(new int[][] {{0, 1}, {0, 2}, {2, 3}, {2, 4}}, new int[][] {{0, 1}, {0, 2}, {0, 3}, {2, 7}, {1, 4}, {4, 5}, {4, 6}}, 2)));
-    }
 
     public static int[] maxTargetNodes(int[][] edges1, int[][] edges2, int k) {
         List<List<Integer>> graph1 = new ArrayList<>();
@@ -59,4 +54,5 @@ public class MaximizeTheNumberOfTargetNodesAfterConnectingTreesI {
         }
         return cnt;
     }
+
 }
