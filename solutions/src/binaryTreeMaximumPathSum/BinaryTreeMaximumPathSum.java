@@ -3,6 +3,7 @@ package binaryTreeMaximumPathSum;
 import structures.treeNode.TreeNode;
 
 public class BinaryTreeMaximumPathSum {
+
     int answer = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
@@ -27,10 +28,9 @@ public class BinaryTreeMaximumPathSum {
             rightCorrectPathSum = Math.max(helper(root.right), 0);
         }
 
-        if (leftCorrectPathSum + rightCorrectPathSum + root.val > answer) {
-            answer = leftCorrectPathSum + rightCorrectPathSum + root.val;
-        }
+        answer = Math.max(answer, leftCorrectPathSum + rightCorrectPathSum + root.val);
 
         return Math.max(leftCorrectPathSum, rightCorrectPathSum) + root.val;
     }
+
 }
