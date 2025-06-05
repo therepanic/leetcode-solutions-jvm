@@ -1,8 +1,5 @@
 package findTheLongestSemiRepetitiveSubstring;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FindTheLongestSemiRepetitiveSubstring {
 
     public static int longestSemiRepetitiveSubstring(String s) {
