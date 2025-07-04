@@ -25,7 +25,7 @@ public class TweetCounts {
         for (int i = 0; i <= (endTime - startTime) / delta; i++) {
             answer.add(0);
         }
-        List<Integer> times = tweetsTimelines.get(tweetName);
+        List<Integer> times = this.tweetsTimelines.get(tweetName);
         for (int time : times) {
             if (time >= startTime && time <= endTime) {
                 int id = (time - startTime) / delta;
