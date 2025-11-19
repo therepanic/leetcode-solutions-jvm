@@ -1,0 +1,21 @@
+package maximizeDistanceToClosestPerson;
+
+public class MaximizeDistanceToClosestPerson {
+    public int maxDistToClosest(int[] seats) {
+        int ans = 0;
+        int last = -1;
+        int n = seats.length;
+        for (int i = 0; i < n; i++) {
+            if (seats[i] == 1) {
+                if (last == -1) {
+                    ans = i;
+                } else {
+                    ans = Math.max(ans, (i - last) / 2);
+                }
+                last = i;
+            }
+        }
+        ans = Math.max(ans, n - 1 - last);
+        return ans;
+    }
+}
