@@ -18,6 +18,7 @@ public class CheckIfAStringCanBreakAnotherString {
                 break;
             }
         }
+        point = 0;
         for (int i = 0; i < 26; i++) {
             point += second[i] - first[i];
             if (point < 0) {
