@@ -14,10 +14,10 @@ public class MinimumArrayLengthAfterPairRemovals {
             maxFreq = Math.max(maxFreq, v);
         }
         if (maxFreq <= nums.size() / 2) {
-            if (nums.size() % 2 == 1) {
-                return 0;
-            } else {
+            if (nums.size() % 2 == 0) {
                 return 1;
+            } else {
+                return 0;
             }
         }
         return 2 * maxFreq - nums.size();
