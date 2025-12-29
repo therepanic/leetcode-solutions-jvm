@@ -14,7 +14,8 @@ public class BreakAPalindrome {
                 return String.valueOf(copied);
             }
         }
-        return palindrome.substring(0, palindrome.length() - 1) + "b";
+        palindromeChars[palindromeChars.length - 1] = 'b';
+        return String.valueOf(palindromeChars);
     }
 
 }
