@@ -47,13 +47,11 @@ public class MinimumOperationsToMakeTheArrayAlternating {
         int count = 0;
         if (evenVal == oddVal) {
             int count1 = 0;
+            int count2 = 0;
             for (int i = 0; i < nums.length; i++) {
                 if (i % 2 == 0 && nums[i] != evenVal || i % 2 != 0 && nums[i] != oddPrevVal) {
                     count1++;
                 }
-            }
-            int count2 = 0;
-            for (int i = 0; i < nums.length; i++) {
                 if (i % 2 == 0 && nums[i] != evenPrevVal || i % 2 != 0 && nums[i] != oddVal) {
                     count2++;
                 }
