@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class NumberOfGoodLeafNodesPairs {
+
     public int countPairs(TreeNode root, int distance) {
         int[] count = new int[1];
         Set<Integer> leaves = new HashSet<>();
