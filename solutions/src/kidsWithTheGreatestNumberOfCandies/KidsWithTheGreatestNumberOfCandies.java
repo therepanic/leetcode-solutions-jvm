@@ -1,0 +1,18 @@
+package kidsWithTheGreatestNumberOfCandies;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class KidsWithTheGreatestNumberOfCandies {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> ans = new ArrayList<>();
+        int max = -1;
+        for (int i = 0; i < candies.length; i++) {
+            max = Math.max(max, candies[i]);
+        }
+        for (int i = 0; i < candies.length; i++) {
+            ans.add(candies[i] + extraCandies >= max);
+        }
+        return ans;
+    }
+}
