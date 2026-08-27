@@ -6,7 +6,6 @@ import java.util.Map;
 public class SumOfElementsWithFrequencyDivisibleByK {
     public int sumDivisibleByK(int[] nums, int k) {
         Map<Integer, Integer> sumMap = new HashMap<>();
-        Map<Integer, Integer> freqMap = new HashMap<>();
         for (int v : nums) {
             sumMap.put(v, sumMap.getOrDefault(v, 0) + 1);
         }
