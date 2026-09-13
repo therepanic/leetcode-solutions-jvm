@@ -6,9 +6,18 @@ class Solution {
         }
         int c = 0;
         for (var entry : values.entrySet()) {
-            if (entry.getValue().size() == 3
-                && entry.getValue().get(1) - entry.getValue().get(0) == entry.getValue().get(2) - entry.getValue().get(1)) {
-                  c++;
+            if (entry.getValue().size() >= 3) {
+                  int a = entry.getValue().get(1) - entry.getValue().get(0);
+                  boolean ok = true;
+                  for (int i = 2; i < entry.getValue().size(); i++) {
+                      if (entry.getValue().get(i) - entry.getValue().get(i - 1) != a) {
+                          ok = false;
+                          break;
+                      }
+                  }
+                  if (ok) {
+                      c++;
+                  }
             }
         }
         return c;
