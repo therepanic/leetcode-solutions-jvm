@@ -1,7 +1,5 @@
 package minimumRotationsToDialANumberII;
 
-import java.util.Arrays;
-
 public class MinimumRotationsToDialANumberII {
     public int minRotations(int A, String s) {
         int last = s.charAt(s.length() - 1) - '0';
