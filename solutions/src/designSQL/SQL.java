@@ -24,7 +24,7 @@ public class SQL {
         if (this.columns.get(name) != row.size()) {
             return false;
         }
-        this.rows.computeIfAbsent(name, _ -> new ArrayList<>()).add(row);
+        this.rows.computeIfAbsent(name, s -> new ArrayList<>()).add(row);
         return true;
     }
 
