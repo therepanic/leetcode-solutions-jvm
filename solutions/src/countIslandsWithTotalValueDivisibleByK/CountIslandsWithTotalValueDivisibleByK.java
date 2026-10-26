@@ -8,7 +8,7 @@ public class CountIslandsWithTotalValueDivisibleByK {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (!visited[i][j] && grid[i][j] != 0) {
-                    int sum = dfs(visited, i, j, grid, path);
+                    long sum = dfs(visited, i, j, grid, path);
 
                     if (sum % k == 0) {
                         c++;
@@ -19,10 +19,10 @@ public class CountIslandsWithTotalValueDivisibleByK {
         return c;
     }
 
-    public int dfs(boolean[][] visited, int n, int m, int[][] grid, int[][] path) {
+    public long dfs(boolean[][] visited, int n, int m, int[][] grid, int[][] path) {
         if (n < 0 || m < 0 || n >= grid.length || m >= grid[0].length || visited[n][m] || grid[n][m] == 0) return 0;
         visited[n][m] = true;
-        int sum = grid[n][m];
+        long sum = grid[n][m];
         for (int[] p : path) {
             int x = n + p[0];
             int y = m + p[1];
